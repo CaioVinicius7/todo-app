@@ -28,6 +28,12 @@ module.exports = {
         groups: ["module", "/^@/", ["parent", "sibling", "index"]],
         alphabetize: { order: "asc", ignoreCase: true }
       }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto"
+      }
     ]
   }
 };
