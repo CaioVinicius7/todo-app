@@ -30,4 +30,18 @@ export class TasksService {
 
     return await createdTask.save();
   }
+
+  async update(id: string, task: Task): Promise<Task> {
+    const taskAlreadyExists = await this.taskModel.findById(id).exec();
+
+    if (!taskAlreadyExists) {
+      throw new HttpException("Task Does Not Exist", HttpStatus.NOT_FOUND);
+    }
+
+    await this.taskModel.updateOne({ _id: id }, task).exec();
+
+    const updatedTask = await this.getById(id);
+
+    return updatedTask;
+  }
 }
