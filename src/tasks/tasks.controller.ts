@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 
 import { Task } from "./tasks";
 import { TasksService } from "./tasks.service";
@@ -10,5 +10,10 @@ export class TasksController {
   @Get()
   async getAll(): Promise<Task[]> {
     return this.taskService.getAll();
+  }
+
+  @Get(":id")
+  async getById(@Param("id") id: string): Promise<Task> {
+    return this.taskService.getById(id);
   }
 }
