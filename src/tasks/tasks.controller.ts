@@ -9,7 +9,9 @@ import {
   Body
 } from "@nestjs/common";
 
-import { Task } from "./tasks";
+import { CreateTaskDTO } from "./dto/createTaskDTO";
+import { UpdateTaskDTO } from "./dto/updateTaskDTO";
+import { Task } from "./entities/tasks";
 import { TasksService } from "./tasks.service";
 
 @Controller("tasks")
@@ -28,12 +30,15 @@ export class TasksController {
 
   @Post()
   @HttpCode(201)
-  async create(@Body() task: Task): Promise<Task> {
+  async create(@Body() task: CreateTaskDTO): Promise<Task> {
     return this.taskService.create(task);
   }
 
   @Patch(":id")
-  async update(@Param("id") id: string, @Body() task: Task): Promise<Task> {
+  async update(
+    @Param("id") id: string,
+    @Body() task: UpdateTaskDTO
+  ): Promise<Task> {
     return this.taskService.update(id, task);
   }
 
