@@ -24,4 +24,10 @@ export class TasksService {
 
     return task;
   }
+
+  async create(task: Task): Promise<Task> {
+    const createdTask = new this.taskModel(task);
+
+    return await createdTask.save();
+  }
 }
