@@ -44,4 +44,14 @@ export class TasksService {
 
     return updatedTask;
   }
+
+  async delete(id: string): Promise<void> {
+    const taskAlreadyExists = await this.taskModel.findById(id).exec();
+
+    if (!taskAlreadyExists) {
+      throw new HttpException("Task Does Not Exist", HttpStatus.NOT_FOUND);
+    }
+
+    await this.taskModel.deleteOne({ _id: id }).exec();
+  }
 }

@@ -3,6 +3,7 @@ import {
   Get,
   Post,
   Patch,
+  Delete,
   Param,
   HttpCode,
   Body
@@ -34,5 +35,11 @@ export class TasksController {
   @Patch(":id")
   async update(@Param("id") id: string, @Body() task: Task): Promise<Task> {
     return this.taskService.update(id, task);
+  }
+
+  @Delete(":id")
+  @HttpCode(204)
+  async delete(@Param("id") id: string): Promise<void> {
+    return this.taskService.delete(id);
   }
 }
