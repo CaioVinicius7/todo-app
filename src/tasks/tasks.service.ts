@@ -32,11 +32,7 @@ export class TasksService {
   }
 
   async update(id: string, task: Task): Promise<Task> {
-    const taskAlreadyExists = await this.taskModel.findById(id).exec();
-
-    if (!taskAlreadyExists) {
-      throw new HttpException("Task Does Not Exist", HttpStatus.NOT_FOUND);
-    }
+    await this.getById(id);
 
     await this.taskModel.updateOne({ _id: id }, task).exec();
 
@@ -46,11 +42,7 @@ export class TasksService {
   }
 
   async delete(id: string): Promise<void> {
-    const taskAlreadyExists = await this.taskModel.findById(id).exec();
-
-    if (!taskAlreadyExists) {
-      throw new HttpException("Task Does Not Exist", HttpStatus.NOT_FOUND);
-    }
+    await this.getById(id);
 
     await this.taskModel.deleteOne({ _id: id }).exec();
   }
