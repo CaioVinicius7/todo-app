@@ -10,7 +10,13 @@ async function bootstrap() {
     origin: "*"
   });
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true
+    })
+  );
 
   const config = new DocumentBuilder()
     .setTitle("Todo App")
