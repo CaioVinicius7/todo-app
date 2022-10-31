@@ -6,14 +6,16 @@ import {
   Delete,
   Param,
   HttpCode,
-  Body
+  Body,
+  Query
 } from "@nestjs/common";
 import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiNotFoundResponse,
   ApiResponse,
-  ApiTags
+  ApiTags,
+  ApiQuery
 } from "@nestjs/swagger";
 
 import { CreateTaskDTO } from "./dto/createTaskDTO";
@@ -31,9 +33,13 @@ export class TasksController {
     isArray: true,
     description: "Success"
   })
+  @ApiQuery({
+    name: "completed",
+    required: false
+  })
   @Get()
-  async getAll(): Promise<Task[]> {
-    return this.taskService.getAll();
+  async getAll(@Query("completed") completed: boolean): Promise<Task[]> {
+    return this.taskService.getAll(completed);
   }
 
   @ApiOkResponse({

@@ -11,10 +11,12 @@ import { Task } from "./entities/tasks.entity";
 export class TasksService {
   constructor(@InjectModel("Task") private readonly taskModel: Model<Task>) {}
 
-  async getAll(): Promise<Task[]> {
-    const tasks = await this.taskModel.find().exec();
+  async getAll(completed?: boolean): Promise<Task[]> {
+    if (completed) {
+      return await this.taskModel.find({ completed });
+    }
 
-    return tasks;
+    return await this.taskModel.find().exec();
   }
 
   async getById(id: string): Promise<Task> {
