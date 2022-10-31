@@ -11,7 +11,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./database-data:/data/mongodb
+      - mongodata:/data/mongodb
     networks:
       - nest_network
 
@@ -22,11 +22,15 @@ services:
     ports:
       - 3333:3333
     volumes:
-      - .:/home/node/app
+      - .:/usr/app
     depends_on:
       - mongo
     networks:
       - nest_network
+
+volumes:
+  mongodata:
+    driver: local
 
 networks:
   nest_network:
