@@ -1,17 +1,5 @@
-import { IsString, IsBoolean, MaxLength, IsOptional } from "class-validator";
+import { PartialType } from "@nestjs/swagger";
 
-import { ApiProperty } from "@nestjs/swagger";
+import { CreateTaskDTO } from "./createTaskDTO";
 
-export class UpdateTaskDTO {
-  @ApiProperty({ required: false })
-  @ApiProperty()
-  @IsString()
-  @MaxLength(100)
-  @IsOptional()
-  description: string;
-
-  @ApiProperty({ required: false })
-  @IsBoolean()
-  @IsOptional()
-  completed: boolean;
-}
+export class UpdateTaskDTO extends PartialType(CreateTaskDTO) {}
