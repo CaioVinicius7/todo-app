@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 
-import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
 import { CreateTaskDTO } from "./dto/createTaskDTO";
@@ -23,7 +23,7 @@ export class TasksService {
     const task = await this.taskModel.findById(id).exec();
 
     if (!task) {
-      throw new HttpException("Task Not Found", HttpStatus.NOT_FOUND);
+      throw new NotFoundException();
     }
 
     return task;
