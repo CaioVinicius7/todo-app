@@ -15,7 +15,8 @@ import {
   ApiNotFoundResponse,
   ApiResponse,
   ApiTags,
-  ApiQuery
+  ApiQuery,
+  ApiBadRequestResponse
 } from "@nestjs/swagger";
 
 import { CreateTaskDTO } from "./dto/createTaskDTO";
@@ -55,6 +56,10 @@ export class TasksController {
   }
 
   @ApiCreatedResponse({ type: Task, description: "successfully created" })
+  @ApiBadRequestResponse({
+    description:
+      "O campo description deve ser uma string || O campo description não pode passar de 100 caracteres || O campo completed precisa ser booleano"
+  })
   @Post()
   @HttpCode(201)
   async create(@Body() task: CreateTaskDTO): Promise<Task> {
@@ -67,6 +72,10 @@ export class TasksController {
   })
   @ApiNotFoundResponse({
     description: "Task not found"
+  })
+  @ApiBadRequestResponse({
+    description:
+      "O campo description deve ser uma string || O campo description não pode passar de 100 caracteres || O campo completed precisa ser booleano"
   })
   @Patch(":id")
   async update(
