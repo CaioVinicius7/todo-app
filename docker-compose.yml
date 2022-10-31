@@ -12,3 +12,22 @@ services:
       - 27017:27017
     volumes:
       - ./database-data:/data/mongodb
+    networks:
+      - nest_network
+
+  app:
+    build: .
+    container_name: app
+    restart: always
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - mongo
+    networks:
+      - nest_network
+
+networks:
+  nest_network:
+    driver: bridge
