@@ -6,7 +6,7 @@ export class UpdateTaskDTO {
   @ApiProperty({ required: false })
   @ApiProperty()
   @IsString()
-  @MaxLength(1)
+  @MaxLength(100)
   @IsOptional()
   description: string;
 
