@@ -32,7 +32,7 @@ export class TasksController {
   @ApiOkResponse({
     type: Task,
     isArray: true,
-    description: "Success"
+    description: "Sucesso"
   })
   @ApiQuery({
     name: "completed",
@@ -45,17 +45,17 @@ export class TasksController {
 
   @ApiOkResponse({
     type: Task,
-    description: "Success"
+    description: "Sucesso"
   })
   @ApiNotFoundResponse({
-    description: "Task not found"
+    description: "Tarefa não encontrada"
   })
   @Get(":id")
   async getById(@Param("id") id: string): Promise<Task> {
     return this.taskService.getById(id);
   }
 
-  @ApiCreatedResponse({ type: Task, description: "successfully created" })
+  @ApiCreatedResponse({ type: Task, description: "Criado com sucesso" })
   @ApiBadRequestResponse({
     description:
       "O campo description deve ser uma string || O campo description não pode passar de 100 caracteres || O campo completed precisa ser booleano"
@@ -68,10 +68,10 @@ export class TasksController {
 
   @ApiOkResponse({
     type: Task,
-    description: "successfully updated"
+    description: "Atualizada com sucesso"
   })
   @ApiNotFoundResponse({
-    description: "Task not found"
+    description: "Task não encontrada"
   })
   @ApiBadRequestResponse({
     description:
@@ -87,10 +87,10 @@ export class TasksController {
 
   @ApiResponse({
     status: 204,
-    description: "successfully deleted"
+    description: "Deletado com sucesso"
   })
   @ApiNotFoundResponse({
-    description: "Task not found"
+    description: "Task não encontrada"
   })
   @Delete(":id")
   @HttpCode(204)
