@@ -20,6 +20,8 @@ O sistema conta com as seguintes funcionalidades:
 
 - Exclusão de tarefa
 
+## ⚠ Pré requisitos
+
 Antes de começar, você vai precisar ter instalado em sua máquina:
 [Node](https://nodejs.org/en/download/), [Git](https://git-scm.com/downloads), [Docker](https://www.docker.com/get-started/) e [Insominia](https://insomnia.rest/download) ou [Postman](https://www.postman.com/downloads/).
 
@@ -50,6 +52,14 @@ $ yarn
 $ yarn start:dev
 
 # O servidor ficara ativo na porta:3333 - acesse <http://localhost:3333>
+```
+
+## 📜 Acessando a documentação
+
+Para ter acesso a documentação utilize a rota /api-docs após a inicialização da aplicação, como no exemplo abaixo ou [clique aqui](http://localhost:3333/api-docs/).
+
+```bash
+http://localhost:3333/api-docs/
 ```
 
 ## Autor
